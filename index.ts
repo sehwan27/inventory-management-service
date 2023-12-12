@@ -6,6 +6,7 @@ import router from "./routes/index";
 dotenv.config();
 const app = express();
 const port = process.env.PORT || 8000;
+app.use(express.json())
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGODB_CONNECTION_STRING || "");
@@ -15,7 +16,6 @@ db.on("error", console.error.bind(console, "MongoDB connection error:"));
 db.once("open", () => {
   console.log("Connected to MongoDB");
 });
-
 app.use("/", router);
 
 app.listen(port, () => {
