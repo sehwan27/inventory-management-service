@@ -1,4 +1,5 @@
 import { Model, Document, FilterQuery, UpdateQuery } from "mongoose";
+import { v4 } from 'uuid'
 
 export class BaseRepository<T extends Document> {
   private model: Model<T>;
@@ -22,6 +23,7 @@ export class BaseRepository<T extends Document> {
   async create(payload: Partial<T>): Promise<T> {
     const data = {
       ...payload,
+      id: v4(),
       created_datetime_utc: new Date().toISOString(),
       modified_datetime_utc: new Date().toISOString(),
     };
