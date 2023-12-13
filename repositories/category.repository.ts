@@ -1,5 +1,3 @@
-// repositories/category.repository.ts
-
 import { BaseRepository } from './base.repository';
 import CategoryModel from '../models/category';
 

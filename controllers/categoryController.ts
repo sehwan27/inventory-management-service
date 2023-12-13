@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import Category from "../models/category";
 import categoryRepository from "../repositories/category.repository";
 
 export const getCategories = async (req: Request, res: Response) => {
@@ -22,10 +21,9 @@ export const createCategory = async (req: Request, res: Response) => {
 export const updateCategory = async (req: Request, res: Response) => {
   const payload = req.body;
   const { id } = req.params;
-  const result = await Category.findOneAndUpdate(
+  const result = await categoryRepository.findOneAndUpdate(
     { category_id: id },
-    { $set: payload },
-    { new: true }
+    payload
   );
   res.status(200).json(result);
 };
