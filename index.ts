@@ -1,21 +1,17 @@
 import express from "express";
-import mongoose from "mongoose";
 import dotenv from "dotenv";
 import router from "./routes/index";
+import cors from 'cors'
+import { databaseConnection } from "./middleware/database";
 
 dotenv.config();
 const app = express();
 const port = process.env.PORT || 8000;
+
 app.use(express.json())
+app.use(cors())
 
-// Connect to MongoDB
-mongoose.connect(process.env.MONGODB_CONNECTION_STRING || "");
-
-const db = mongoose.connection;
-db.on("error", console.error.bind(console, "MongoDB connection error:"));
-db.once("open", () => {
-  console.log("Connected to MongoDB");
-});
+databaseConnection()
 app.use("/", router);
 
 app.listen(port, () => {
