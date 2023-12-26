@@ -1,11 +1,12 @@
 import mongoose, { Document, Schema } from "mongoose";
 
 interface ProductModel extends Document {
-  product_id: string;
+  id: string;
   name: string;
   brand: string;
   quantity: string;
   category_id: string;
+  price: string,
   remarks: string;
   created_datetime_utc: Date,
   modified_datetime_utc: Date,
@@ -14,10 +15,11 @@ interface ProductModel extends Document {
 }
 
 const productSchema = new Schema({
-  product_id: { type: String, required: true },
+  id: { type: String, required: true },
   name: { type: String, required: true },
   brand: { type: String },
   quantity: { type: String },
+  price: { type: String },
   category_id: { type: String },
   remarks: { type: String },
   expiry_datetime_utc: { type: Date },

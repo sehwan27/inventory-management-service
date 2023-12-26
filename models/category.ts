@@ -1,14 +1,14 @@
 import mongoose, { Document, Schema } from "mongoose";
 
 interface CategoryModel extends Document {
-  category_id: string;
+  id: string;
   name: string;
   created_datetime_utc: Date,
   modified_datetime_utc: Date,
 }
 
 const categorySchema = new Schema({
-  category_id: { type: String, required: true },
+  id: { type: String, required: true },
   name: { type: String, required: true },
   created_datetime_utc: { type: Date, required: true },
   modified_datetime_utc: { type: Date, required: true },

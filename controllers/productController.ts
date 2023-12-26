@@ -8,14 +8,20 @@ export const getProducts = async (req: Request, res: Response) => {
 
 export const getProduct = async (req: Request, res: Response) => {
   const { id } = req.params;
-  const result = await productRepository.findOne({ product_id: id });
+  const result = await productRepository.findOne({ id });
   res.status(200).json(result);
 };
 
 export const createProduct = async (req: Request, res: Response) => {
-  const payload = req.body;
-  const result = await productRepository.create(payload);
-  res.status(200).json(result);
+  try {
+    const payload = req.body;
+    const result = await productRepository.create(payload);
+    res.status(200).json(result);
+    
+  } catch (error: any) {
+    console.log(error)
+    res.status(500).json(error.errors)
+  }
 };
 
 export const updateProduct = async (req: Request, res: Response) => {

@@ -8,7 +8,7 @@ export const getCategories = async (req: Request, res: Response) => {
 
 export const getCategory = async (req: Request, res: Response) => {
   const { id } = req.params;
-  const result = await categoryRepository.findOne({ category_id: id });
+  const result = await categoryRepository.findOne({ id });
   res.status(200).json(result);
 };
 
