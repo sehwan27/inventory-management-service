@@ -16,8 +16,8 @@ export class BaseRepository<T extends Document> {
     return this.model.findOne(filter);
   }
 
-  async find(): Promise<T[]> {
-    return this.model.find();
+  async find(filter: FilterQuery<T> = {}): Promise<T[]> {
+    return this.model.find(filter);
   }
 
   async create(payload: Partial<T>): Promise<T> {
@@ -26,6 +26,7 @@ export class BaseRepository<T extends Document> {
       id: v4(),
       created_datetime_utc: new Date().toISOString(),
       modified_datetime_utc: new Date().toISOString(),
+      is_deleted: false,
     };
     return this.model.create(data);
   }

@@ -12,6 +12,7 @@ interface ProductModel extends Document {
   modified_datetime_utc: Date,
   expiry_datetime_utc: Date,
   manufactured_datetime_utc: Date,
+  is_deleted: Boolean,
 }
 
 const productSchema = new Schema({
@@ -26,6 +27,7 @@ const productSchema = new Schema({
   manufactured_datetime_utc: { type: Date },
   created_datetime_utc: { type: Date, required: true },
   modified_datetime_utc: { type: Date, required: true },
+  is_deleted: { type: Boolean },
 }, { versionKey: false });
 
 const ProductModel = mongoose.model<ProductModel>("products", productSchema);
