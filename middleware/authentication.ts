@@ -15,6 +15,7 @@ export const authentication = async (
       next();
     });
   } catch (error) {
+    console.log(error)
     res.status(401).send("Unauthorized");
   }
 };
